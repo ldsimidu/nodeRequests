@@ -1,0 +1,23 @@
+{
+  "name": "noderequests",
+  "version": "1.0.0",
+  "description": "Learning requests with Node.js",
+  "homepage": "https://github.com/ldsimidu/nodeRequests#readme",
+  "bugs": {
+    "url": "https://github.com/ldsimidu/nodeRequests/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ldsimidu/nodeRequests.git"
+  },
+  "license": "ISC",
+  "author": "",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "start:dev": "nodemon index.js"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.10"
+  }
+}
