@@ -11,31 +11,33 @@ fs.mkdir(path.join(__dirname, '/test'), (error) => {
 })
 
 // Criar um arquivo
+// As funções do fs são assíncronas: writeFile, appendFile e readFile não esperam umas pelas outras.
+// Colocando todas dentro do writeFile, faz com que seja criado uma ordem
 fs.writeFile(path.join(__dirname, '/test', 'test.txt'), 'hello world', (error) => {
     if (error) {
         return console.log("Erro: " + error);
     }
 
     console.log("Arquivo criado com sucesso");
-    
+
+    // Modificar um arquivo
+    fs.appendFile(path.join(__dirname, '/test', 'test.txt'), '\nolaaaaa', (error) => {
+        if (error) {
+            return console.log('Erro: ', error);
+        }
+
+        console.log('Arquivo modificado com sucesso');
+    })
+
+    // Ler arquivo
+    fs.readFile(
+        path.join(__dirname, '/test', 'test.txt'), 
+        'utf8', 
+        (error, data) => {
+        if (error) {
+            return console.log('Erro: ', error);   
+        }
+        console.log(data);
+    })
 })
 
-// Modificar um arquivo
-fs.appendFile(path.join(__dirname, '/test', 'test.txt'), '\nolaaaaa', (error) => {
-    if (error) {
-        return console.log('Erro: ', error);
-    }
-
-    console.log('Arquivo modificado com sucesso');
-})
-
-// Ler arquivo
-fs.readFile(
-    path.join(__dirname, '/test', 'test.txt'), 
-    'utf8', 
-    (error, data) => {
-    if (error) {
-        return console.log('Erro: ', error);   
-    }
-    console.log(data);
-})
