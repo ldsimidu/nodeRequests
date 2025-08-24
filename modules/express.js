@@ -4,6 +4,15 @@ const UserModel = require('../src/models/user.model')
 const app = express();
 app.use(express.json()) // declarando que o express irá receber dados em json
 
+// função executada antes de qualquer requisição, middleware
+app.use((req, res, next) => {
+  console.log(`Request Type: ${req.method}`);
+  console.log(`Content Type: ${req.headers["content-type"]}`);
+  console.log(`Date: ${new Date()}`);
+
+  next();
+});
+
 // Pega todos os users
 app.get('/users', async (req, res) => {
     try {
