@@ -1,4 +1,8 @@
-const { Person } = require('./person');
+const dotenv = require('dotenv');
+const connectToDatabase = require('./src/database/connect')
 
-const person = new Person('Helena');
-console.log(person.sayMyName());
+dotenv.config()
+
+connectToDatabase();
+
+require('./modules/express')
