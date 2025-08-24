@@ -4,6 +4,10 @@ const UserModel = require('../src/models/user.model')
 const app = express();
 app.use(express.json()) // declarando que o express irá receber dados em json
 
+//set de views de dados
+app.set('view engine', 'ejs');
+app.set('views', 'src/views')
+
 // função executada antes de qualquer requisição, middleware
 app.use((req, res, next) => {
   console.log(`Request Type: ${req.method}`);
@@ -12,6 +16,12 @@ app.use((req, res, next) => {
 
   next();
 });
+
+app.get('/views/users', async (req, res) => {
+    const users = await UserModel.find({});
+    
+    res.render('index', { users });
+})
 
 // Pega todos os users
 app.get('/users', async (req, res) => {
